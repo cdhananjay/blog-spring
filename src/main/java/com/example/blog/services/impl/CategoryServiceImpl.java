@@ -42,4 +42,11 @@ public class CategoryServiceImpl implements CategoryService {
         }
         categoryRepository.deleteById(id);
     }
+
+    @Override
+    public Category findById(UUID id) {
+        return categoryRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Category not found with id " + id)
+        );
+    }
 }
