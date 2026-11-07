@@ -20,7 +20,7 @@ public class PostDto {
     private String content;
     private AuthorDto author;
     private CategoryDto category;
-    private Set<TagResponse> tags;
+    private Set<TagResponseDto> tags;
     private Integer readingTime;
     private PostStatus status;
     private LocalDateTime created;

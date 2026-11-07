@@ -1,11 +1,10 @@
 package com.example.blog.controllers;
 
 import com.example.blog.domain.dtos.CategoryDto;
-import com.example.blog.domain.dtos.CreateCategoryRequest;
+import com.example.blog.domain.dtos.CreateCategoryRequestDto;
 import com.example.blog.domain.entities.Category;
 import com.example.blog.mappers.CategoryMapper;
 import com.example.blog.services.CategoryService;
-import jakarta.servlet.ServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,10 +32,10 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<CategoryDto> createCategory(
-           @Valid @RequestBody CreateCategoryRequest createCategoryRequest
+           @Valid @RequestBody CreateCategoryRequestDto createCategoryRequestDto
            ) {
         Category category = categoryService.createCategory(
-                categoryMapper.toEntity(createCategoryRequest)
+                categoryMapper.toEntity(createCategoryRequestDto)
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 categoryMapper.toDto(category)

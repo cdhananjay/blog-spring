@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class LoginRequest {
-    private String email;
-    private String password;
+@AllArgsConstructor
+public class AuthResponseDto {
+    private String token;
+    private long expiresIn; //seconds
 }

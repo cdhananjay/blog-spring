@@ -5,11 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
+import java.util.UUID;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String token;
-    private long expiresIn; //seconds
+@NoArgsConstructor
+@Builder
+public class TagResponseDto {
+    private UUID id;
+    private String name;
+    private Integer postCount;
 }

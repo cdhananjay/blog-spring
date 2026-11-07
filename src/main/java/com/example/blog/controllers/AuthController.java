@@ -1,7 +1,7 @@
 package com.example.blog.controllers;
 
-import com.example.blog.domain.dtos.AuthResponse;
-import com.example.blog.domain.dtos.LoginRequest;
+import com.example.blog.domain.dtos.AuthResponseDto;
+import com.example.blog.domain.dtos.LoginRequestDto;
 import com.example.blog.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +18,16 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
         UserDetails userDetails = authenticationService.authenticate(
-                loginRequest.getEmail(),
-                loginRequest.getPassword()
+                loginRequestDto.getEmail(),
+                loginRequestDto.getPassword()
         );
         String token = authenticationService.generateToken(userDetails);
-        AuthResponse authResponse = AuthResponse.builder()
+        AuthResponseDto authResponseDto = AuthResponseDto.builder()
                 .token(token)
                 .expiresIn(24*60*60)
                 .build();
-        return ResponseEntity.ok(authResponse);
+        return ResponseEntity.ok(authResponseDto);
     }
 }
